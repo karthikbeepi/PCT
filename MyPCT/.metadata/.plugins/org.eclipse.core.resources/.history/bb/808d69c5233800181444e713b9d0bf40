@@ -1,0 +1,10 @@
+package leetcode.graph;
+
+public class L765CouplesHoldingHands {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}
