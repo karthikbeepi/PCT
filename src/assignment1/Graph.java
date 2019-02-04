@@ -3,6 +3,8 @@ package assignment1;
 public class Graph {
 		int V;
 		int E[][];
+		int path[][] = new int[10000][10000];
+		int pathCount=0;
 		
 		public Graph(int v) {
 			V = v;
@@ -14,51 +16,57 @@ public class Graph {
 			E[v][u] = w;
 		}
 		public int findTSP() {
-			
 			int minCost = Integer.MAX_VALUE;
 			int st = 0;
-			
-			while(true)
+			int ar[] = new int[V];
+			for(int i=0; i<V; i++)
+				ar[i] =i;
+			permutation(ar, 0, V-1);
+			for(int i=0; i<pathCount; i++)
 			{
-				if(st==V)
-					break;
-				int[] ar = new int[V-1];
-				int k = 0;
-				for(int i=0; i<V; i++)
-				{
-					if(i == st)
-						continue;
-					else
-					{
-						ar[k] = i;
-						if(k<V-1)
-							k++;
-					}
-				}		
-				int startVal = E[st][ar[0]];
-				int endVal = E[ar[V-2]][st];
-				int cost;
-				if(startVal==0||endVal==0)
-					cost = Integer.MAX_VALUE;
-				else
-				{
-					cost = startVal+endVal;
-					for(int j = 1; j<V-1; j++)
-					{
-						if(E[ar[j-1]][ar[j]]==0)
-						{
-							cost = Integer.MAX_VALUE;
-							break;
-						}
-						else
-							cost += E[ar[j-1]][ar[j]];
-					}
-				}
-				if(minCost>cost)
-					minCost = cost;
-				st++;
+				int cost = pathVal(path[i]); 
+				if(cost<minCost)
+					minCost=cost;
 			}
 			return minCost;
 		}
 
+		private int pathVal(int[] p) {
+			int cost = 0;
+			int temp ;
+			for(int i=0; i<p.length-1; i++)
+			{
+				temp = E[p[i]][p[i+1]];
+				if(temp==0)
+				{
+					return Integer.MAX_VALUE;
+				}
+				cost+=temp;
+			}
+			temp = E[p[0]][p[p.length-1]];
+			if(temp==0)
+				return Integer.MAX_VALUE;
+			cost+= temp;
+			return cost;
+		}
+		public void permutation(int ar[], int start, int end)
+		{
+			if(start==end)
+				path[pathCount++] = ar.clone();
+			else
+			{
+				for(int i=start; i<=end; i++)
+				{
+					swap(ar, start, i);
+					permutation(ar, start+1, end);
+					swap(ar, start, i);
+				}
+			}
+		}
+		
+		private void swap(int[] ar, int start, int i) {
+			int temp = ar[start];
+			ar[start] = ar[i];
+			ar[i] = temp;
+		}
 }
