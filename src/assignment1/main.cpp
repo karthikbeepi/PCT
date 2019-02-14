@@ -6,9 +6,8 @@ using namespace std;
 class Graph
 {
 		int V;
-		int E[10][10]; 
-		int path[30000][30000]; 
-		int pathCount;
+		int E[11][11]; 
+		unsigned int minCost;
 
 		int pathVal(int p[]) {
 			int cost = 0;
@@ -33,9 +32,9 @@ class Graph
 		{
 			if(start==last)
             {
-                for(int i=0; i<V; i++)
-                    path[pathCount][i]=ar[i];
-                pathCount++;
+                int temp = pathVal(ar);
+				if(minCost>temp)
+					minCost = temp;
 			}
 			else
 			{
@@ -58,7 +57,6 @@ class Graph
 
 		Graph(int v) {
 			V = v;
-			pathCount = 0;
 		}
 
 		void addEdge(int u, int v, int w)
@@ -68,18 +66,12 @@ class Graph
 		}
 
 		unsigned int findTSP() {
-			unsigned int minCost = 60000;
+			minCost = 60000;
 			int st = 0;
 			int ar[10];
 			for(int i=0; i<V; i++)
 				ar[i] =i;
 			permutation(ar, 0, V-1);
-			for(int i=0; i<pathCount; i++)
-			{
-				int cost = pathVal(path[i]);
-				if(cost<minCost)
-					minCost=cost;
-			}
 			cout<<minCost<<'\n';
 			return minCost;
 		}
