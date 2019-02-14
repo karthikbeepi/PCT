@@ -1,38 +1,14 @@
 #include<iostream>
 #include<fstream>
+
 using namespace std;
-class Graph {
-		public:
+
+class Graph
+{
 		int V;
-		int E[1000][1000];
-		int path[1000][1000];
-		int pathCount=0;
-
-		Graph(int v) {
-			V = v;
-		}
-
-		void addEdge(int u, int v, int w)
-		{
-			E[u][v] = w;
-			E[v][u] = w;
-		}
-
-		int findTSP() {
-			int minCost = 9999;
-			int st = 0;
-			int ar[10];
-			for(int i=0; i<V; i++)
-				ar[i] =i;
-			permutation(ar, 0, V-1);
-			for(int i=0; i<pathCount; i++)
-			{
-				int cost = pathVal(path[i]);
-				if(cost<minCost)
-					minCost=cost;
-			}
-			return minCost;
-		}
+		int E[10][10]; 
+		int path[30000][30000]; 
+		int pathCount;
 
 		int pathVal(int p[]) {
 			int cost = 0;
@@ -77,17 +53,73 @@ class Graph {
 			ar[start] = ar[i];
 			ar[i] = temp;
 		}
+
+		public:
+
+		Graph(int v) {
+			V = v;
+			pathCount = 0;
+		}
+
+		void addEdge(int u, int v, int w)
+		{
+			E[u][v] = w;
+			E[v][u] = w;
+		}
+
+		unsigned int findTSP() {
+			unsigned int minCost = 60000;
+			int st = 0;
+			int ar[10];
+			for(int i=0; i<V; i++)
+				ar[i] =i;
+			permutation(ar, 0, V-1);
+			for(int i=0; i<pathCount; i++)
+			{
+				int cost = pathVal(path[i]);
+				if(cost<minCost)
+					minCost=cost;
+			}
+			cout<<minCost<<'\n';
+			return minCost;
+		}
+
 };
 
 int main(int argc, char* argv[])
 {
-    Graph g1(4);
-	g1.addEdge(0, 1, 2);
-	g1.addEdge(0, 2, 1);
-	g1.addEdge(0, 3, 2);
-	g1.addEdge(1, 2, 2);
-	g1.addEdge(3, 1, 1);
-	g1.addEdge(2, 3, 2);
-	cout<<g1.findTSP();
+    ifstream fin;
+    ofstream fout;
+
+    if(argc!=3)
+    {
+        cout<<"Error";
+        return -1;
+    }
+
+	fin.open(argv[1]);
+    fout.open(argv[2]);
+
+    int v, n;
+    fin>>n;
+    for(int i=0; i<n; i++)
+    {
+        fin>>v;
+        Graph* g;
+        g = new Graph(v);
+        int queries;
+        fin>>queries;
+        for(int j=0; j<queries; j++)
+        {
+            int u, v, w;
+            fin>>u>>v>>w;
+            g->addEdge(u, v, w);
+        }
+        fout<<g->findTSP();
+        if(i!=n-1)
+            fout<<"\n";
+        delete g;
+    }
+
     return 0;
 }
