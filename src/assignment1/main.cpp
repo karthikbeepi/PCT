@@ -6,25 +6,23 @@ using namespace std;
 class Graph
 {
 		int V;
-		int E[11][11]; 
+		int E[500][500]; 
 		unsigned int minCost;
-
 		int pathVal(int p[]) {
 			int cost = 0;
 			int temp ;
-			for(int i=0; i<V-1; i++)
+			for(int i=0; i<V-2; i++)
 			{
 				temp = E[p[i]][p[i+1]];
-				if(temp==0)
-				{
-					return 9999;
-				}
 				cost+=temp;
+				if(cost>minCost)
+					return cost;
 			}
-			temp = E[p[0]][p[V-1]];
-			if(temp==0)
-				return 9999;
+			temp = E[0][p[V-2]];
 			cost+= temp;
+			temp = E[0][p[0]];
+			cost+= temp;	
+
 			return cost;
 		}
 
@@ -34,7 +32,9 @@ class Graph
             {
                 int temp = pathVal(ar);
 				if(minCost>temp)
+				{
 					minCost = temp;
+				}		
 			}
 			else
 			{
@@ -57,6 +57,11 @@ class Graph
 
 		Graph(int v) {
 			V = v;
+			for(int i=0; i<V; i++)
+				for(int j =0; j<V; j++)
+				{
+					E[i][j] = 9999;
+				}
 		}
 
 		void addEdge(int u, int v, int w)
@@ -67,11 +72,10 @@ class Graph
 
 		unsigned int findTSP() {
 			minCost = 60000;
-			int st = 0;
-			int ar[10];
-			for(int i=0; i<V; i++)
-				ar[i] =i;
-			permutation(ar, 0, V-1);
+			int ar[500];
+			for(int i=0; i<V-1; i++)
+				ar[i] =i+1;
+			permutation(ar, 0, V-2);
 			cout<<minCost<<'\n';
 			return minCost;
 		}
