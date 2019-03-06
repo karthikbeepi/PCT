@@ -1,3 +1,4 @@
+/grap/
 /AllCombo.class
 /AllPalindromePoss.class
 /AllSubarray.class
@@ -7,6 +8,8 @@
 /CCoding/
 /CommonChild.class
 /DivisiblePairs.class
+/FF$Graph.class
+/FF.class
 /FindGCD.class
 /FraudActivityNotification.class
 /Google1.class
@@ -25,6 +28,7 @@
 /MoveChange.class
 /Names.class
 /Node.class
+/OptimalPay.class
 /PCT2Adv.class
 /PCT2Basic.class
 /PCT3Adv.class
@@ -59,6 +63,4 @@
 /assignment1/
 /graph/
 /test/
-/OptimalPay.class
-/FF.class
-/FF$Graph.class
+/Midterms/
