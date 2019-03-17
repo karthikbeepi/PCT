@@ -19,7 +19,7 @@ public class Assignment2 {
 		}
 	}
 	
-	ArrayList<Combo> c = new ArrayList<>();
+	ArrayList<Combo> c = new ArrayList<Combo>();
 	
 	public void CombinationRepetitionUtil(int chosen[], int arr[], int index, int r, int start, int end) { 
 		int sum=0;
@@ -60,6 +60,7 @@ public class Assignment2 {
 	public void CombinationRepetition(int arr[], int n, int r) { 
 		int chosen[] = new int[r + 1]; 
 		CombinationRepetitionUtil(chosen, arr, 0, r, 0, n - 1); 
+		
 	} 
 	
 	public static void main(String[] args) {
@@ -106,7 +107,4 @@ public class Assignment2 {
 		}
 		return ar;
 	}
-
-
-
 }
