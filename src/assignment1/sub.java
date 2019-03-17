@@ -10,9 +10,9 @@ class sub {
 		{
 			ar = a;
 		}
-		void printCombo(){
+		void printCombo(int amt){
 			for(int i: ar)
-				System.out.print(i+" ");
+				System.out.print(i+amt+" ");
 			System.out.println();
 		}
 	}
@@ -62,14 +62,14 @@ class sub {
 
 //Driver program to test above functions 
 	public static void main(String[] args) { 
-		int arr[] = {2, 1, 0, -1, -2}; 
+		int arr[] = {2, 1,0, -1, -2};  //Array from b to -b
 		int n = arr.length; 
-		int r = 3; 
+		int r = 3; 			//Number of periods p
 		sub obj = new sub();
 		obj.CombinationRepetition(arr, n, r); 
 		for(Combo i : obj.c)
 		{
-			i.printCombo();
+			i.printCombo(5);
 		}
 	} 
 } 
