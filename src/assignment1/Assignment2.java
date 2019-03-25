@@ -16,6 +16,179 @@ public class Assignment2 {
 			for(int i: ar)
 				System.out.print(i+amt+" ");
 			System.out.println();
+			System.out.println(valOfCombo(amt));
+		}
+		int valOfCombo(int amt)
+		{
+			int val =0;
+			for(int i: ar)
+			{
+				val+=costOfNumber(i+amt);
+			}			
+			return val;
+		}
+		private int costOfNumber(int i) {
+			
+			int cost=0;
+			if(i<10)
+			{
+				return costOfDigit(i);
+			}
+			else if(i<100)
+			{
+				cost += costTenDigit(i);
+				return cost;
+			}
+			else if(i<1000)
+			{
+				cost += costOfDigit(i/100);
+				cost += "HUNDRED".length();
+				System.out.println("HUNDRED");
+				cost += costOfNumber(i%100);
+			}
+			else if(i<10000)
+			{
+				cost += costOfDigit(i/1000);
+				cost += "THOUSAND".length();
+				System.out.println("THOUSAND");
+				cost += costOfNumber(i%1000);
+			}
+			else if(i<100000)
+			{
+				cost += costOfNumber(i/1000);
+				cost += "THOUSAND".length();
+				System.out.println("THOUSAND");
+				cost += costOfNumber(i%1000);
+				return cost;
+			}
+			return -1;
+		}
+		private int costTenDigit(int i) {
+			switch(i)
+			{
+			case 10: 
+				System.out.println("TEN");
+				return "TEN".length();
+			case 11: 
+				System.out.println("ELEVEN");
+				return "ELEVEN".length();
+			case 12: 
+				System.out.println("TWELVE");
+				return "TWELVE".length();
+			case 13: 
+				System.out.println("THIRTEEN");
+				return "THIRTEEN".length();
+			case 14: 
+				System.out.println("FOURTEEN");
+				return "FOURTEEN".length();
+			case 15: 
+				System.out.println("FIFTEEN");
+				return "FIFTEEN".length();
+			case 16: 
+				System.out.println("SIXTEEN");
+				return "SIXTEEN".length();
+			case 17: 
+				System.out.println("SEVENTEEN");
+				return "SEVENTEEN".length();
+			case 18: 
+				System.out.println("EIGHTEEN");
+				return "EIGHTEEN".length();
+			case 19: 
+				System.out.println("NINETEEN");
+				return "NINETEEN".length();			
+			}
+			if(i<30)
+			{
+				int cost = "TWENTY".length();
+				System.out.println("TWENTY");
+				cost += costOfDigit(i%10);
+				return cost;
+			}
+			else if(i<40)
+			{
+				int cost = "THIRTY".length();
+				System.out.println("THIRTY");
+				cost += costOfDigit(i%10);
+				return cost;
+			}
+			else if(i<50)
+			{
+				int cost = "FORTY".length();
+				System.out.println("FORTY");
+				cost += costOfDigit(i%10);
+				return cost;
+			}
+			else if(i<60)
+			{
+				int cost = "FIFTY".length();
+				System.out.println("FIFTY");
+				cost += costOfDigit(i%10);
+				return cost;
+			}
+			else if(i<70)
+			{
+				int cost = "SIXTY".length();
+				System.out.println("SIXTY");
+				cost += costOfDigit(i%10);
+				return cost;
+			}
+			else if(i<80)
+			{
+				int cost = "SEVENTY".length();
+				System.out.println("SEVENTY");
+				cost += costOfDigit(i%10);
+				return cost;
+			}
+			else if(i<90)
+			{
+				int cost = "EIGHTY".length();
+				System.out.println("EIGHTY");
+				cost += costOfDigit(i%10);
+				return cost;
+			}
+			else
+			{
+				int cost = "NINETY".length();
+				System.out.println("NINETY");
+				cost += costOfDigit(i%10);
+				return cost;
+			}
+		}
+		private int costOfDigit(int i) {
+			switch(i)
+			{
+			case 0: 
+				System.out.println("ZERO");
+				return 0;
+			case 1: 
+				System.out.println("ONE");
+				return "ONE".length();
+			case 2: 
+				System.out.println("TWO");
+				return "TWO".length();
+			case 3: 
+				System.out.println("THREE");
+				return "THREE".length();
+			case 4: 
+				System.out.println("FOUR");
+				return "FOUR".length();
+			case 5: 
+				System.out.println("FIVE");
+				return "FIVE".length();
+			case 6: 
+				System.out.println("SIX");
+				return "SIX".length();
+			case 7: 
+				System.out.println("SEVEN");
+				return "SEVEN".length();
+			case 8:
+				System.out.println("EIGHT");
+				return "EIGHT".length();
+			case 9: 
+				System.out.println("NINE");
+				return "NINE".length();
+			}
+			return i;
 		}
 	}
 	
@@ -92,10 +265,16 @@ public class Assignment2 {
 			obj[i] = new Assignment2();
 			int arr[] = makeArray(i);
 			obj[i].CombinationRepetition(arr, arr.length, periods);
+			int lowestCost = Integer.MAX_VALUE;
 			for(Combo k : obj[i].c)
 			{
-				k.printCombo(amount);
+//				k.printCombo(amount);
+//				System.out.println(k.valOfCombo(amount));
+				int temp = k.valOfCombo(amount);
+				if(lowestCost>temp)
+					lowestCost = temp;
 			}
+			System.out.println(lowestCost);
 		}
 	}
 
