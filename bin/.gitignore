@@ -26,6 +26,7 @@
 /Midterms/
 /MinimumBribes.class
 /MoveChange.class
+/MovieDataFrame.class
 /Names.class
 /Node.class
 /OptimalPay.class
@@ -63,4 +64,12 @@
 /assignment1/
 /grap/
 /graph/
+/pathCheck$Coordinates.class
+/pathCheck.class
 /test/
+/MovieDataframe$DataFrame.class
+/MovieDataframe$Pair.class
+/MovieDataframe.class
+/MovieDataFrame$DataFrame.class
+/MovieDataFrame$Pair.class
+/SLP.class
