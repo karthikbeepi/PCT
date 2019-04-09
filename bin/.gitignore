@@ -26,6 +26,8 @@
 /Midterms/
 /MinimumBribes.class
 /MoveChange.class
+/MovieDataFrame$DataFrame.class
+/MovieDataFrame$Pair.class
 /MovieDataFrame.class
 /Names.class
 /Node.class
@@ -51,6 +53,7 @@
 /PagesInBook.class
 /PainterPartition.class
 /RansomNote.class
+/SLP.class
 /SimpleGraph.class
 /SimpleGraphTest.class
 /SubstringofString.class
@@ -64,14 +67,9 @@
 /assignment1/
 /grap/
 /graph/
+/lca$Node.class
+/lca.class
 /pathCheck$Coordinates.class
 /pathCheck.class
 /test/
-/MovieDataframe$DataFrame.class
-/MovieDataframe$Pair.class
-/MovieDataframe.class
-/MovieDataFrame$DataFrame.class
-/MovieDataFrame$Pair.class
-/SLP.class
-/lca.class
-/lca$Node.class
+/PCT5/
